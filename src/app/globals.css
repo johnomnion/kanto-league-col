@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #b99e52;
+  --color-secondary: #134a41;
+  --color-dark: #02241e;
+  --color-text-dark: #0e1213;
+
+  --font-bold: var(--font-oswald), sans-serif;
+  --font-regular: var(--font-open-sans), sans-serif;
+}
+
+/* Custom Utilities */
+@utility pointer-large {
+  cursor: pointer;
+}
+
+@utility flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    @apply bg-white text-text-dark font-regular antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+}
+
