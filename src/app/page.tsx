@@ -1,6 +1,9 @@
 import Slider from "@/components/ui/Slider";
 import Link from "next/link";
 import { Calendar, Clock } from "lucide-react";
+import StatisticsLeague from "@/components/features/StatisticsLeague";
+import RankingFeature from "@/components/features/RankingFeature";
+import FollowHome from "@/components/features/FollowHome";
 
 export default function Home() {
   return (
@@ -80,6 +83,16 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Statistics League */}
+      <StatisticsLeague />
+
+      {/* Ranking Feature */}
+      <RankingFeature />
+
+      {/* Follow Home */}
+      <FollowHome />
     </div>
   );
 }
+
