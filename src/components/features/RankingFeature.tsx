@@ -2,152 +2,126 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
-import Image from "next/image";
 import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "swiper/css";
 import "swiper/css/navigation";
+import RankingCard from "../ui/RankingCard";
 
 const rankingPlayers = [
   {
     id: 1,
-    name: "Juan Rubio",
-    teamLogo: "/assets/images/premier/second-season/team/logo-panitas.webp",
-    playerImage: "/assets/images/premier/second-season/top-players/3.webp",
-    score: "9.8",
-    position: "1",
-  },
-  {
-    id: 2,
     name: "Samuel Arevalo",
     teamLogo: "/assets/images/premier/second-season/team/logo-refricol.webp",
     playerImage: "/assets/images/premier/second-season/top-players/10.webp",
-    score: "9.5",
-    position: "2",
+    score: "8.9",
+    position: "VOL",
+    cardBg: "/assets/images/cards/card-refricol-fc.webp",
+    stats: { matches: 10, goals: 23, assists: 0 },
+  },
+  {
+    id: 2,
+    name: "Juan Sebastian",
+    teamLogo: "/assets/images/premier/second-season/team/logo-puskas.webp",
+    playerImage: "/assets/images/premier/second-season/top-players/8.webp",
+    score: "8.7",
+    position: "VOL",
+    cardBg: "/assets/images/cards/card-puskas-fc.webp",
+    stats: { matches: 11, goals: 17, assists: 0 },
   },
   {
     id: 3,
-    name: "Diego Mayorga",
-    teamLogo: "/assets/images/premier/second-season/team/logo-r8remakia.webp",
-    playerImage: "/assets/images/premier/second-season/top-players/9.webp",
-    score: "9.2",
-    position: "3",
+    name: "Juan Rubio",
+    teamLogo: "/assets/images/premier/second-season/team/logo-panitas.webp",
+    playerImage: "/assets/images/premier/second-season/top-players/3.webp",
+    score: "8.7",
+    position: "DEL",
+    cardBg: "/assets/images/cards/card-panitas-fc.webp",
+    stats: { matches: 11, goals: 19, assists: 0 },
   },
   {
     id: 4,
-    name: "Sebastian Rodriguez",
-    teamLogo: "/assets/images/premier/second-season/team/logo-panitas.webp",
-    playerImage: "/assets/images/premier/second-season/top-players/8.webp",
-    score: "9.0",
-    position: "4",
-  },
-  {
-    id: 5,
-    name: "Carlos Perez",
-    teamLogo: "/assets/images/premier/second-season/team/logo-puskas.webp",
+    name: "Andres Rodriguez",
+    teamLogo: "/assets/images/premier/second-season/team/logo-gg-zac.webp",
     playerImage: "/assets/images/premier/second-season/top-players/1.webp",
-    score: "8.9",
-    position: "5",
+    score: "8.7",
+    position: "VOL",
+    cardBg: "/assets/images/cards/card-gg-zac-fc.webp",
+    stats: { matches: 9, goals: 6, assists: 0 },
   },
 ];
 
 export default function RankingFeature() {
   return (
-    <section className="bg-white py-20 relative">
-      <div className="container mx-auto px-4 text-center">
+    <section className="bg-white py-20 relative overflow-hidden">
+      <div className="container mx-auto px-4 text-center relative z-10">
         {/* Title */}
         <div className="mb-12">
-          <h2 className="text-4xl sm:text-6xl font-bold text-[#b99e52] mb-4 uppercase">
+          <h2 className="text-5xl sm:text-7xl font-bold text-[#b99e52] mb-2 uppercase tracking-tighter">
             Top 5 - Ranking
           </h2>
-          <p className="text-[#0e1213] text-lg font-bold uppercase tracking-widest mb-2">
+          <p className="text-[#0e1213] text-sm font-bold uppercase tracking-[0.3em]">
             Estos son los jugadores de la semana
           </p>
-          <h6 className="text-[#b99e52] text-sm uppercase tracking-widest">Ranking</h6>
+          <h6 className="text-[#b99e52] text-xs uppercase tracking-widest mt-2">Ranking</h6>
         </div>
 
         <div className="max-w-3xl mx-auto mb-12">
-          <p className="text-[#b99e52] text-sm leading-relaxed">
+          <p className="text-[#b99e52] text-sm leading-relaxed font-medium">
             Nuestros grandes talentos están dando lo mejor en cada jornada,
             estos son el ranking de <br />todos los jugadores conoce como van
             tus preferidos...
           </p>
         </div>
 
-        {/* Ranking Slider */}
+        {/* Ranking Cards Slider */}
         <div className="w-full max-w-6xl mx-auto mb-12 relative">
            <Swiper
             modules={[Navigation, Autoplay]}
-            spaceBetween={20}
+            spaceBetween={30}
             slidesPerView={1}
             breakpoints={{
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 3 },
               1280: { slidesPerView: 4 },
             }}
-            autoplay={{ delay: 4500, disableOnInteraction: false }}
-            navigation
-            className="pb-12 px-4"
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            navigation={{
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }}
+            className="pb-12 px-4 ranking-swiper"
           >
             {rankingPlayers.map((player) => (
               <SwiperSlide key={player.id}>
-                <div className="group cursor-pointer relative">
-                  {/* Card Container */}
-                  <div className="relative bg-[#0e1213] rounded-lg overflow-hidden transition-transform duration-300 group-hover:-translate-y-2 shadow-xl">
-                    
-                    {/* Header: Position & Score */}
-                    <div className="absolute top-0 left-0 w-full p-4 flex justify-between items-start z-20">
-                       <div className="flex flex-col items-center">
-                          <span className="text-4xl font-bold text-[#b99e52] leading-none">{player.position}</span>
-                          <span className="text-[10px] uppercase text-white font-bold tracking-widest">Pos.</span>
-                       </div>
-                       <div className="flex flex-col items-center bg-white/10 backdrop-blur-sm rounded-lg p-2">
-                          <span className="text-2xl font-bold text-white leading-none">{player.score}</span>
-                          <span className="text-[10px] uppercase text-[#b99e52] font-bold tracking-widest">Ptos</span>
-                       </div>
-                    </div>
-
-                    {/* Player Image */}
-                    <div className="relative w-full h-80 mt-4">
-                       <Image 
-                          src={player.playerImage} 
-                          alt={player.name} 
-                          fill 
-                          className="object-cover object-top transition-transform duration-500 group-hover:scale-110" 
-                       />
-                       <div className="absolute inset-0 bg-gradient-to-t from-[#0e1213] via-transparent to-transparent opacity-90"></div>
-                    </div>
-
-                    {/* Footer: Name & Team */}
-                    <div className="absolute bottom-0 left-0 w-full p-4 z-20">
-                       <div className="flex items-center justify-between border-t border-white/20 pt-3">
-                          <h3 className="text-white font-bold text-lg uppercase text-left leading-tight max-w-[70%]">
-                             {player.name}
-                          </h3>
-                          <div className="w-10 h-10 relative bg-white rounded-full p-1 shadow-lg">
-                             <Image src={player.teamLogo} alt="Team" fill className="object-contain p-1" />
-                          </div>
-                       </div>
-                    </div>
-
-                  </div>
-                </div>
+                <RankingCard {...player} />
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
 
-        {/* View All Button */}
-        <div className="flex justify-center">
-          <Link
-            href="/ranking"
-            className="inline-block border-2 border-[#0e1213] text-[#0e1213] px-10 py-3 font-bold uppercase tracking-widest hover:bg-[#0e1213] hover:text-white transition-all duration-300"
-          >
-            Ver todos
-          </Link>
+        {/* Navigation and View All Button */}
+        <div className="flex justify-center items-center gap-8 mt-8">
+           {/* Prev Arrow */}
+           <button className="swiper-button-prev-custom cursor-pointer hover:scale-110 transition-transform group">
+              <ChevronLeft className="w-8 h-8 text-[#0e1213] group-hover:text-[#b99e52] transition-colors" />
+           </button>
+
+           {/* View All Button */}
+           <Link
+             href="/ranking"
+             className="inline-flex items-center gap-2 bg-[#b99e52] text-white px-8 py-3 rounded-full font-bold uppercase tracking-widest hover:bg-[#a08845] transition-colors shadow-lg text-sm"
+           >
+             Ver todos
+             <ChevronRight className="w-4 h-4" />
+           </Link>
+
+           {/* Next Arrow */}
+           <button className="swiper-button-next-custom cursor-pointer hover:scale-110 transition-transform group">
+              <ChevronRight className="w-8 h-8 text-[#0e1213] group-hover:text-[#b99e52] transition-colors" />
+           </button>
         </div>
       </div>
     </section>
   );
 }
-
-
