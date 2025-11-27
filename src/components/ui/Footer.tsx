@@ -36,12 +36,12 @@ export default function Footer() {
             <p>
               &copy; Copyright {currentYear} KantoLeague -{" "}
               <a
-                href="https://weguay.pro/"
+                href="https://omnion.com.co/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
               >
-                By: WeGuay.pro
+                By: omnion
               </a>
             </p>
           </div>
